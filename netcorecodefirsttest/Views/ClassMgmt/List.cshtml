@@ -1,0 +1,31 @@
+﻿@using netcorecodefirsttest.Domains;
+@model IEnumerable<ClassInfo>
+@{
+    ViewData["Title"] = "List";
+}
+
+    <h2 style="text-align:center;" >用户列表</h2>
+
+<a class="btn btn-default"href="@Url.Action("Add")">添加班级</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>名称</th>
+            <th>备注</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Remark</td>
+            </tr>
+        }
+       
+       
+    </tbody>
+</table>

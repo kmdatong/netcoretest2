@@ -1,0 +1,34 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="container">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+    </div>
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+            @if (ViewBag.userName == null)
+            {
+
+                <li><a href="@Url.Action("Login","account")">登录</a></li>
+            }
+            else
+            {
+                <li><a asp-area="" asp-controller="Home" asp-action="Contact">@ViewBag.userName 你好</a></li>
+              
+                <li><a href="@Url.Action("LoginOut","account")">退出登录</a></li>
+            }
+
+        </ul>
+    </div>
+</div>

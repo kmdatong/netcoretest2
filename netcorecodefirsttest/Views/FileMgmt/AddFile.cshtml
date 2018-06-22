@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewData["Title"] = "AddFile";
+}
+
+<h2>添加文件</h2>
+
+<form method="post" enctype="multipart/form-data"  asp-controller="FileMgmt" asp-action="UploadFile">
+    <div class="form-group">
+        <div class="col-md-10">
+            <p>Upload one or more files using this form:</p>
+            <input type="file" id="fileImg" name="files" multiple />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="submit" value="上 传" />
+            <input type="button" onclick="uploadFile()" value="formdata上传" />
+        </div>
+    </div>
+</form>
+
+<script>
+
+    function uploadFile() {
+        var request = new XMLHttpRequest();
+        var form = new FormData();
+        form.append("Id", 23); // 数字23被立即转换成字符串"23"
+        var fileInputElement = $("#fileImg").get(0); // fileInputElement中已经包含了用户所选择的文件 
+        form.append("files", fileInputElement.files[0]); 
+        request.open("POST", "@Url.Action("UploadFile")");
+
+        request.send(form);
+    }
+
+</script>
