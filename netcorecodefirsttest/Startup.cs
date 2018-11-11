@@ -25,6 +25,14 @@ namespace netcorecodefirsttest
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //跨域 设置了允许所有来源
+            services.AddCors(options =>
+             options.AddPolicy("any",
+             builder => builder.AllowAnyMethod()
+                             .AllowAnyHeader()
+                             .AllowAnyOrigin()
+                             .AllowCredentials()));
+
             services.AddMvc();
             // 缓存
             services.AddMemoryCache();
@@ -32,8 +40,9 @@ namespace netcorecodefirsttest
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             //注册Cookie认证服务
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+           services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,14 +57,24 @@ namespace netcorecodefirsttest
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
+            
             app.UseStaticFiles();
 
             //注意app.UseAuthentication方法一定要放在下面的app.UseMvc方法前面，否者后面就算调用HttpContext.SignInAsync进行用户登录后，使用
             //HttpContext.User还是会显示用户没有登录，并且HttpContext.User.Claims读取不到登录用户的任何信息。
             //这说明Asp.Net OWIN框架中MiddleWare的调用顺序会对系统功能产生很大的影响，各个MiddleWare的调用顺序一定不能反
-            app.UseAuthentication();
+             app.UseAuthentication();
 
+            #region 跨越代码
+            //app.UseCors(builder =>
+            //       builder.WithOrigins("http://localhost")
+            //           .AllowAnyOrigin()
+            //           .AllowAnyHeader()
+            //           .AllowAnyMethod());
+
+            //app.UseCors("AllowSpecificOrigin");
+
+            #endregion
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

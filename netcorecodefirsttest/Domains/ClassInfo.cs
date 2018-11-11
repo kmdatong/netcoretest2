@@ -14,5 +14,7 @@ namespace netcorecodefirsttest.Domains
         public String Name { get; set; }
 
         public string Remark { get; set; }
+
+        public DateTime CreateTime { get; set; }
     }
 }

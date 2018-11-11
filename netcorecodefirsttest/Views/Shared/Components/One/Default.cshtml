@@ -4,31 +4,35 @@
 @{
 }
 
-<div class="container">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
 
-    </div>
-    <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-            <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-            @if (ViewBag.userName == null)
-            {
 
-                <li><a href="@Url.Action("Login","account")">登录</a></li>
-            }
-            else
-            {
-                <li><a asp-area="" asp-controller="Home" asp-action="Contact">@ViewBag.userName 你好</a></li>
-              
-                <li><a href="@Url.Action("LoginOut","account")">退出登录</a></li>
-            }
-
-        </ul>
-    </div>
-</div>
+<ul class="layui-nav layui-layout-left">
+    <li class="layui-nav-item"><a href="">控制台</a></li>
+    <li class="layui-nav-item"><a href="">商品管理</a></li>
+    <li class="layui-nav-item"><a href="">用户</a></li>
+    <li class="layui-nav-item">
+        <a href="javascript:;">其它系统<span class="layui-nav-more"></span></a>
+        <dl class="layui-nav-child">
+            <dd><a href="">邮件管理</a></dd>
+            <dd><a href="">消息管理</a></dd>
+            <dd><a href="">授权管理</a></dd>
+        </dl>
+    </li>
+    <span class="layui-nav-bar" style="left: 61px; top: 55px; width: 0px; opacity: 0;"></span>
+</ul>
+<ul class="layui-nav layui-layout-right">
+    <li class="layui-nav-item">
+     
+        <a href="javascript:;">
+            <img src="//tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg" class="layui-nav-img">
+            @ViewBag.userName 你好
+            <span class="layui-nav-more"></span>
+        </a>
+        <dl class="layui-nav-child">
+            <dd><a href="">基本资料</a></dd>
+            <dd><a href="">安全设置</a></dd>
+        </dl>
+        </li>
+        <li class="layui-nav-item"><a href="@Url.Action("LoginOut","account")">退了</a></li>
+        <span class="layui-nav-bar"></span>
+    </ul>

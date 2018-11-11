@@ -10,6 +10,12 @@ namespace netcorecodefirsttest.Domains
     {
        public DbSet<ClassInfo> ClassInfo { get; set; }
 
+        public DbSet<Account> Account { get; set; }
+
+        public DbSet<LunBo> LunBo { get; set; }
+
+        public DbSet<FileMgmt> FileMgmt { get; set; }
+
         public DTContext(DbContextOptions<DTContext> options)
             : base(options)
         {

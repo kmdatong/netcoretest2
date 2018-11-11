@@ -5,51 +5,75 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - netcorecodefirsttest</title>
+    <link href="~/iconfont/iconfont.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/layui/css/layui.css" />
+    @*<link href="~/layui/css/admin.css" rel="stylesheet" />*@
+    <link href="~/iconfont/iconfont.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/layui/layui.js"></script>
 
-    <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-    </environment>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment>
 </head>
-<body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      @await Component.InvokeAsync("One")
-    </nav>
-    <div class="container body-content">
-        @RenderBody()
-        <hr /> 
-        <footer>
-            <p>&copy; 2018 - netcorecodefirsttest</p>
-        </footer>
-    </div>
+    @*<nav class="navbar navbar-inverse navbar-fixed-top">
+          @await Component.InvokeAsync("One")
+        </nav>*@
 
-    <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-    </environment>
-    <environment exclude="Development">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery"
-                crossorigin="anonymous"
-                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
-        </script>
-        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous"
-                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
-        </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
-    </environment>
+    <body class="layui-layout-body">
+        <div class="layui-layout layui-layout-admin">
+            <div class="layui-header">
+                <div class="layui-logo">后台管理</div>
+                <!-- 头部区域（可配合layui已有的水平导航） -->
+                @await Component.InvokeAsync("One")
+            </div>
+
+            <div class="layui-side layui-bg-black">
+                <div class="layui-side-scroll">
+                    <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+                    <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                       
+                        <li class="layui-nav-item">
+                            <a href="javascript:;">解决方案<span class="layui-nav-more"></span></a>
+                            <dl class="layui-nav-child">
+                                <dd><a href="javascript:;">列表一</a></dd>
+                                <dd><a href="javascript:;">列表二</a></dd>
+                                <dd><a href="">超链接</a></dd>
+                            </dl>
+                        </li>
+                        <li class="layui-nav-item"><a href="/ClassMgmt/List"><i class="iconfont icon-banjiguanli"></i> 班级管理</a></li>
+                        <li class="layui-nav-item"><a href="/FIleMgmt/AddFile"><i class="iconfont icon-wenjianguanli1"></i> 文件管理</a></li>
+                        <span class="layui-nav-bar" style="top: 22.5px; height: 0px; opacity: 0;"></span>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="layui-body" id="LAY_app_body">
+                <!-- 内容主体区域 -->
+                    @RenderBody()
+               
+            </div>
+
+            <div class="layui-footer">
+                <!-- 底部固定区域 -->
+                © layui.com - 底部固定区域
+            </div>
+        </div>
+ 
 
     @RenderSection("Scripts", required: false)
 </body>
 </html>
+<script>
+    //JavaScript代码区域
+    layui.use('element', function () {
+        var element = layui.element;
+
+    });
+</script>
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?d214947968792b839fd669a4decaaffc";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
