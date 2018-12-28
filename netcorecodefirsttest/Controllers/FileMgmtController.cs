@@ -8,22 +8,26 @@ using System.IO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
 using netcorecodefirsttest.Domains;
+using netcorecodefirsttest.Filter;
 
 namespace netcorecodefirsttest.Controllers
 {
+    [AuthFilter]
     public class FileMgmtController : Controller
     {
         private IHostingEnvironment _host;
-        private DTContext _context { get; set; }
+        private DTContext _context;
+        private readonly IHostingEnvironment _hostingEnvironment;
 
         public FileMgmtController(
             DTContext context,
-            IHostingEnvironment host
+            IHostingEnvironment host,
+            IHostingEnvironment hostingEnvironment
             )
         {
             _host = host;
             _context = context;
-
+            _hostingEnvironment = hostingEnvironment;
         }
         
 
@@ -50,7 +54,7 @@ namespace netcorecodefirsttest.Controllers
                            .Take(limit)
                            .ToList();
 
-            return Json(new { code = 0, data = list });
+            return Json(new { code = 0, data = list,page=page,limit = limit, count = query.Count()  });
         }
 
         public async Task<IActionResult> UploadFile(List<IFormFile> files)
@@ -136,6 +140,26 @@ namespace netcorecodefirsttest.Controllers
                 }
            
             return Ok(new { path = filePth });
+        }
+
+        [HttpPost]
+        public JsonResult DeleteFile(int id)
+        {
+            var entity = _context.FileMgmt.FirstOrDefault(x=>x.Id == id);
+            if (entity == null)
+                return Json(new { code=1,msg="数据不存在"});
+           
+                string webRootPath = _hostingEnvironment.WebRootPath;
+                string filePath = webRootPath + entity.Url;
+                if (System.IO.File.Exists(filePath))
+                {
+                    System.IO.File.Delete(filePath);
+                }
+
+                _context.FileMgmt.Remove(entity);
+                _context.SaveChanges();
+            
+            return Json(new { code=0});
         }
     }
 }

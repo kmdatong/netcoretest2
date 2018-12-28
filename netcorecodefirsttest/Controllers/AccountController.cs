@@ -31,14 +31,27 @@ namespace netcorecodefirsttest.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult Login()
+        public IActionResult Login(string errorMsg)
         {
-
+            ViewBag.ErrorMsg = errorMsg;
             return View();
         }
         [HttpPost]
-        public IActionResult Login(string name)
+        public IActionResult Login(string name,string password)
         {
+            string errorMsg = "";
+            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(password))
+            {
+                errorMsg = "登录名、密码不能为空";
+                return RedirectToAction("login", new { errorMsg = errorMsg });
+            }
+               
+            if (name.Trim() != "datong" || password.Trim() != "123456")
+            {
+                errorMsg = "登录名或密码错误";
+                return RedirectToAction("login",new { errorMsg = errorMsg});
+            }
+
             var claims = new[] { new Claim("LonginName", name) };
 
             ClaimsIdentity clainsident = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

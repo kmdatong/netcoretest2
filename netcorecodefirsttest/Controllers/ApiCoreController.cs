@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using netcorecodefirsttest.Domains;
 using Microsoft.AspNetCore.Cors;
+using System.Collections.Specialized;
 
 namespace netcorecodefirsttest.Controllers
 {
@@ -62,6 +63,15 @@ namespace netcorecodefirsttest.Controllers
             var list = _context.LunBo.OrderBy(x => x.Id).Skip((page - 1) * pageSize).Take(pageSize);
 
             return new { data = list };
+        }
+
+        [HttpGet]
+        [Route("testForm")]
+        public object testForm([FromBody] NameValueCollection formData)
+        {
+            string namestr = formData["username"];
+
+            return new { };
         }
 
     }

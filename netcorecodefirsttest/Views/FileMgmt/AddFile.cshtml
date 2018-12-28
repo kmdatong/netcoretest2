@@ -3,7 +3,6 @@
     ViewData["Title"] = "AddFile";
 }
 
-<h2>添加文件</h2>
 
 <div class="layadmin-tabsbody-item layui-show">
     <div class="layui-card layadmin-header">
@@ -36,8 +35,8 @@
                 <table class="layui-hide" id="test" lay-filter="test"></table>
 
                 <script type="text/html" id="barDemo">
-                    <a class="layui-btn layui-btn-xs" href="@Url.Action("add")?id={{d.id}}">编辑</a>
-                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                    <a class="layui-btn layui-btn-xs" href="{{d.url}}">下载</a>
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-id="{{d.id}}" lay-event="del">删除</a>
                 </script>
             </div>
         </div>
@@ -70,13 +69,35 @@
             , cols: [[
                 { type: 'checkbox', fixed: 'left' }
                 , { field: 'id', title: 'ID', width: 80, fixed: 'left', unresize: true, sort: true }
-                , { field: 'name', title: '文件名称', edit: 'text' }
+                , { field: 'name', title: '文件名称' }
                 , { field: 'url', title: '地址' }
-                , { field: 'createTime', title: '创建时间', sort: true }
+                , { field: 'createTime', title: '创建时间', sort: true },
+                , { fixed: 'right', title: '操作', toolbar: '#barDemo', width: 150 }
             ]]
             , id: 'testReload'
             , page: true
         });
+
+        table.on('tool(test)', function (obj) {
+          
+            if (obj.event === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    $.post("@Url.Action("DeleteFile")", { id: obj.data.id },
+                        function (data) {
+                            if (data.code == 0) {
+                                layer.msg("操作成功", { time: 1000 }, function() {
+                                    location.reload();
+                                });
+                            } else {
+                                layer.msg("操作失败");
+                            }
+                    });
+                    obj.del();
+                    layer.close(index);
+                });
+            }
+        });
+
     })
 
     layui.use('upload', function () {
@@ -89,7 +110,9 @@
             , accept: 'file' //普通文件
             , exts: 'zip|rar|7z|xlsx|doc|docx' //只允许上传压缩文件
             , done: function (res) {
-                console.log(res)
+                layer.msg("上传成功", { time: 1000 }, function () {
+                    location.reload();
+                });
             }, error: function (index, upload) {
                 layer.msg("文件上传失败");
             }

@@ -74,6 +74,8 @@ namespace netcorecodefirsttest
 
             //app.UseCors("AllowSpecificOrigin");
 
+            app.UseStaticFiles();
+
             #endregion
             app.UseMvc(routes =>
             {
@@ -81,6 +83,8 @@ namespace netcorecodefirsttest
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+           
         }
     }
 }

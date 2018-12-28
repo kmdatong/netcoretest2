@@ -16,6 +16,12 @@ namespace netcorecodefirsttest.Domains
 
         public DbSet<FileMgmt> FileMgmt { get; set; }
 
+        public DbSet<FormInstance> FormInstance { get; set; }
+
+        public DbSet<FormTemplate> FormTemplate { get; set; }
+
+        public DbSet<FormValue> FormValue { get; set; }
+
         public DTContext(DbContextOptions<DTContext> options)
             : base(options)
         {

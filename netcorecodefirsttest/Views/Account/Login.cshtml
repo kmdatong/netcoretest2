@@ -1,21 +1,115 @@
 ﻿
 @{
     ViewData["Title"] = "Login";
+    Layout = null;
 }
 
-<h2>Login</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="~/layui/css/layui.css" rel="stylesheet" />
+    <title></title>
+    <style>
+        body {
+            width: 100%;
+            height: 100%;
+            background: url('/images/loginbg.jpg') fixed center center;
+            overflow: hidden;
+            font-family: "微软雅黑";
+            font-size: 14px;
+        }
 
-<form class="form-horizontal" role="form" method="post">
-    <div class="form-group">
-        <label for="firstname" class="col-sm-2 control-label">登录名</label>
-        <div class="col-sm-5">
-            <input type="text" class="form-control" name="name" id="ame" placeholder="">
-        </div>
+        .login-body {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -250px;
+            margin-top: -150px;
+            width: 500px;
+            color: #fff;
+            border-radius: 30px !important;
+            background-color: rgba(0,0,0,0.1);
+        }
+
+        .layui-input-block {
+            margin-top:20px;
+            width: 370px;
+            margin-left:65px !important;
+           
+        }
+
+        .layui-form h3 {
+            margin-top: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            font: 20px "microsoft yahei",Helvetica,Tahoma,Arial,"Microsoft jhengHei",sans-serif;
+        }
+
+        .layui-form-label {
+            
+        }
+
+        .layui-input {
+            padding:3px;
+            padding-left:60px;
+            height:50px;
+            line-height:46px;
+            border-radius: 10px !important;
+        }
+        .ipuser {
+            width: 25px;
+            height: 25px;
+            background: url(/images/login_ico.png);
+            background-position: -125px 0;
+            position: absolute;
+            margin: 12px 13px;
+        }
+        .ippassword {
+            width: 25px;
+            height: 25px;
+            background-image: url(/images/login_ico.png);
+            background-position: -125px -34px;
+            position: absolute;
+            margin: 12px 13px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-body">
+        <form class="layui-form" method="post">
+            @if (ViewBag.ErrorMsg != null)
+            {
+                <p style="color:red;margin-left:30px;margin-top:10px;line-height:14px;display:inline-block;height:16px;">@ViewBag.ErrorMsg</p>
+            }
+            else
+            {
+                <p style="color:red;margin-left:30px;margin-top:10px;line-height:14px;display:inline-block;height:16px;"> </p>
+            }
+            <h3>用户登录</h3>
+            <div class="layui-form-item">
+
+                <div class="layui-input-block">
+                    <span class="ipuser"></span>
+                    <input type="text" class="layui-input" name="name" id="ame" placeholder="">
+                </div>
+            </div>
+            <div class="layui-form-item">
+
+                <div class="layui-input-block">
+                    <span class="ippassword"></span>
+                    <input type="password" class="layui-input" name="password" id="password" placeholder="">
+                </div>
+            </div>
+            <div class="form-group" style="margin-right:70px;margin-bottom:30px;float:right;">
+
+                <button type="submit" class="layui-btn" style="width:200px;margin-top:20px;height:46px;border-radius:10px;">登录</button>
+                
+            </div>
+        </form>
     </div>
 
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default">登录</button>
-        </div>
-    </div>
-</form>
+</body>
+</html>
+

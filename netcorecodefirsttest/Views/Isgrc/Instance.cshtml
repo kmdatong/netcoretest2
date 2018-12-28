@@ -1,0 +1,50 @@
+﻿@using netcorecodefirsttest.Models
+@model TemplateTree
+@{
+    ViewData["Title"] = "Index";
+}
+<style>
+    .divmain {
+        background-color: #f8f3f3;
+        margin: 0 auto;
+        width: 1000px;
+        padding: 20px;
+    }
+</style>
+<div class="divmain">
+    <h1>@Model.name</h1>
+    <form class="layui-form" method="post">
+        @Html.HiddenFor(x => x.Id)
+
+        @foreach (var ctrl in Model.CtrlList)
+        {
+            var checkList = ctrl.CheckList;
+            <h2>控制 @ctrl.Id</h2>
+
+            @foreach (var check in checkList)
+            {
+                var normList = check.NormList;
+
+                <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                    <legend>检查点 @check.Id</legend>
+                </fieldset>
+                @foreach (var norm in normList)
+                {
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">检查指标@(norm.Id)</label>
+                        <div class="layui-input-block">
+
+                            <input type="text" name="number" disabled="disabled"  class="layui-input" value="@norm.Name">
+
+                        </div>
+                    </div>
+
+                }
+
+
+            }
+        }
+
+     
+    </form>
+</div>
