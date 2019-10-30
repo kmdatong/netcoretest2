@@ -1,0 +1,11 @@
+E:\myproject\githubProject\netcoretest2\netcorecodefirsttest\bin\Debug\netcoreapp2.1\netcorecodefirsttest.deps.json
+E:\myproject\githubProject\netcoretest2\netcorecodefirsttest\bin\Debug\netcoreapp2.1\netcorecodefirsttest.runtimeconfig.json
+E:\myproject\githubProject\netcoretest2\netcorecodefirsttest\bin\Debug\netcoreapp2.1\netcorecodefirsttest.runtimeconfig.dev.json
+E:\myproject\githubProject\netcoretest2\netcorecodefirsttest\bin\Debug\netcoreapp2.1\netcorecodefirsttest.dll
+E:\myproject\githubProject\netcoretest2\netcorecodefirsttest\bin\Debug\netcoreapp2.1\netcorecodefirsttest.pdb
+E:\myproject\githubProject\netcoretest2\netcorecodefirsttest\obj\Debug\netcoreapp2.1\netcorecodefirsttest.csprojAssemblyReference.cache
+E:\myproject\githubProject\netcoretest2\netcorecodefirsttest\obj\Debug\netcoreapp2.1\netcorecodefirsttest.csproj.CoreCompileInputs.cache
+E:\myproject\githubProject\netcoretest2\netcorecodefirsttest\obj\Debug\netcoreapp2.1\netcorecodefirsttest.AssemblyInfoInputs.cache
+E:\myproject\githubProject\netcoretest2\netcorecodefirsttest\obj\Debug\netcoreapp2.1\netcorecodefirsttest.AssemblyInfo.cs
+E:\myproject\githubProject\netcoretest2\netcorecodefirsttest\obj\Debug\netcoreapp2.1\netcorecodefirsttest.dll
+E:\myproject\githubProject\netcoretest2\netcorecodefirsttest\obj\Debug\netcoreapp2.1\netcorecodefirsttest.pdb

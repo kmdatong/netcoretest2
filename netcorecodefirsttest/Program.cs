@@ -19,7 +19,7 @@ namespace netcorecodefirsttest
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
+                .UseStartup<Startup>() // 在 Startup中注册中间件、定义管道的逻辑
                 .Build();
     }
 }

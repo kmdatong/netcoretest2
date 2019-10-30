@@ -13,6 +13,7 @@ using netcorecodefirsttest.Filter;
 
 namespace netcorecodefirsttest
 {
+    // 在 Startup中注册中间件、定义管道的逻辑
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -58,8 +59,6 @@ namespace netcorecodefirsttest
                 app.UseExceptionHandler("/Home/Error");
             }
             
-            app.UseStaticFiles();
-
             //注意app.UseAuthentication方法一定要放在下面的app.UseMvc方法前面，否者后面就算调用HttpContext.SignInAsync进行用户登录后，使用
             //HttpContext.User还是会显示用户没有登录，并且HttpContext.User.Claims读取不到登录用户的任何信息。
             //这说明Asp.Net OWIN框架中MiddleWare的调用顺序会对系统功能产生很大的影响，各个MiddleWare的调用顺序一定不能反
